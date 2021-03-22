@@ -1,0 +1,253 @@
+@import url("http://fonts.cdnfonts.com/css/poppins");
+* {
+  padding: 0;
+  margin: 0;
+  text-rendering: geometricPrecision;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #292929;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: #292929;
+  background-color: #fff;
+  height: 100vh;
+  width: 100vw;
+}
+
+#header {
+  background-color: #6700EE;
+  color: #fff;
+}
+
+#header a {
+  color: inherit;
+}
+
+#header i {
+  color: #292929;
+}
+
+@media screen and (min-width: 1050px) {
+  #header {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 66% auto;
+        grid-template-columns: 66% auto;
+  }
+}
+
+#header header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 2em;
+  font-size: 16px;
+}
+
+@media screen and (min-width: 1050px) {
+  #header header {
+    padding: 2em 2em 2em 4em;
+  }
+}
+
+#header header .logo {
+  font-weight: 800;
+  color: #FF64CB;
+}
+
+#header header nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#header header nav ul :last-child a {
+  padding: 0 0 0 1em;
+}
+
+#header header nav ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#header header nav ul li a {
+  padding: 0 1em;
+  width: 100%;
+  font-weight: 300;
+  font-size: inherit;
+}
+
+#header .social-header {
+  display: none;
+  background-color: #fff;
+}
+
+@media screen and (min-width: 1050px) {
+  #header .social-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 2em 4em 2em 0;
+  }
+}
+
+#header .social-header ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 7em;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#header .social-header ul li a i {
+  font-size: 25px;
+}
+
+#hero {
+  padding: 4em;
+  background: #6E00FF;
+  color: #fff;
+}
+
+@media screen and (min-width: 1050px) {
+  #hero {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 66% auto;
+        grid-template-columns: 66% auto;
+    padding: 0;
+    background: #fff;
+    height: 90vh;
+  }
+}
+
+#hero .content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media screen and (min-width: 1050px) {
+  #hero .content {
+    background: #6E00FF;
+    padding: 6em 8em 6em 4em;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+}
+
+@media screen and (min-width: 1250px) {
+  #hero .content {
+    background: #6E00FF;
+    padding: 6em 8em 6em 10em;
+  }
+}
+
+#hero .content h1 {
+  margin-bottom: 30px;
+  font-size: 28px;
+  line-height: 42px;
+  width: 100%;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+@media screen and (min-width: 1050px) {
+  #hero .content h1 {
+    font-size: 3em;
+    text-align: left;
+  }
+}
+
+#hero .content .meet {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+@media screen and (min-width: 1050px) {
+  #hero .content .meet {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+}
+
+#hero .content .meet span {
+  margin-right: 10px;
+}
+
+#hero .content .meet p {
+  font-weight: 700;
+  color: #FF64CB;
+}
+
+#hero .content .scroll {
+  width: 30px;
+  height: auto;
+}
+
+#hero #hero-design {
+  display: none;
+}
+
+@media screen and (min-width: 1050px) {
+  #hero #hero-design {
+    display: unset;
+    margin-left: -50%;
+    margin-top: 15%;
+    width: 100%;
+  }
+}
+/*# sourceMappingURL=main.css.map */

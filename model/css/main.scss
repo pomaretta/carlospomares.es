@@ -1,0 +1,262 @@
+@import url('http://fonts.cdnfonts.com/css/poppins');
+
+// FONT
+$font: "Poppins", sans-serif;
+
+// COLORS
+$bg-primary: #fff;
+$bg-accent: #6700EE;
+$bg-accent2: #6E00FF;
+$text-primary: #292929;
+$text-accent: #FF64CB;
+$border-primary: #757575;
+
+// MIXING
+
+@mixin md {
+    @media screen and (min-width: 800px) {
+        @content;
+    }
+}
+
+@mixin lg {
+    @media screen and (min-width: 1050px) {
+        @content;
+    }
+}
+
+@mixin xl {
+    @media screen and (min-width: 1250px) {
+        @content;
+    }
+}
+
+// RESET
+
+* {
+    padding: 0;
+    margin: 0;
+    text-rendering: geometricPrecision;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: $text-primary;
+}
+
+img {
+    max-width: 100%;
+}
+
+// GENERAL
+
+body {
+    font-family: $font;
+    color: $text-primary;
+    background-color: $bg-primary;
+    height: 100vh;
+    width: 100vw;
+}
+
+// HEADER
+
+#header {
+
+    background-color: $bg-accent;
+    color: $bg-primary;
+
+    a {
+        color: inherit;
+    }
+
+    i {
+        color: $text-primary;
+    }
+
+    @include lg {
+        display: grid;
+        grid-template-columns: 66% auto;
+    }
+
+    header {
+        
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2em;
+        font-size: 16px;
+
+        @include lg {
+            padding: 2em 2em 2em 4em;
+        }
+
+        .logo {
+            font-weight: 800;
+            color: $text-accent;
+        }
+
+        nav {
+            
+            ul {
+                display: flex;
+
+                :last-child {
+                    a {
+                        padding: 0 0 0 1em;
+                    }
+                }
+
+                li {
+
+                    display: flex;
+
+                    a {
+                        padding: 0 1em;
+                        width: 100%;
+                        font-weight: 300;
+                        font-size: inherit;
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+    .social-header {
+
+        display: none;
+        background-color: $bg-primary;
+        
+
+        @include lg {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 2em 4em 2em 0;
+        }
+
+        ul {
+            display: flex;
+            width: 7em;
+            justify-content: space-between;
+            align-items: center;
+
+            li {
+
+                a {
+
+                    i {
+                        font-size: 25px;
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+#hero {
+
+    
+    padding: 4em;
+    background: $bg-accent2;
+    color: $bg-primary;
+
+    @include lg {
+        display: grid;
+        grid-template-columns: 66% auto;
+        padding: 0;
+        background: $bg-primary;
+        height: 90vh;
+    }
+
+    .content {
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+
+        @include lg {
+            background: $bg-accent2;
+            padding: 6em 8em 6em 4em;
+            align-items: flex-start;
+        }
+
+        @include xl {
+            background: $bg-accent2;
+            padding: 6em 8em 6em 10em;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            font-size: 28px;
+            line-height: 42px;
+            width: 100%;
+            text-align: center;
+            word-wrap: break-word;
+
+            @include lg {
+                font-size: 3em;
+                text-align: left;
+            }
+
+        }
+    
+        .meet {
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            width: 100%;
+
+            @include lg {
+                justify-content: flex-start;   
+            }
+
+            span {
+                margin-right: 10px;
+            }
+    
+            p {
+                font-weight: 700;
+                color: $text-accent;
+            }
+    
+        }
+
+        .scroll {
+            
+            width: 30px;
+            height: auto;
+
+        }
+    
+    }
+
+    #hero-design {
+        display: none;
+
+        @include lg {
+            display: unset;
+            margin-left: -50%;
+            margin-top: 15%;
+            width: 100%;
+        }
+
+    }
+
+}
