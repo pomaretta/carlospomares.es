@@ -424,6 +424,7 @@ body.active {
 @media screen and (min-width: 1050px) {
   #hero .content h1 {
     font-size: 3em;
+    line-height: 1.5em;
     text-align: left;
   }
 }
@@ -637,6 +638,12 @@ body.active {
 
 #contact {
   width: 100%;
+}
+
+@media screen and (min-width: 1250px) {
+  #contact {
+    padding: 4em 10em 4em 10em !important;
+  }
 }
 
 #contact .contact-container {

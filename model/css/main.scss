@@ -20,7 +20,6 @@ $bg-accent2: #e71d36;
 $text-primary: #252525;
 $text-accent: #011627;
 $border-primary: #757575;
-
 $success: #4BB543;
 
 // MIXING
@@ -390,6 +389,7 @@ body.active {
 
             @include lg {
                 font-size: 3em;
+                line-height: 1.5em;
                 text-align: left;
             }
 
@@ -602,6 +602,10 @@ body.active {
 #contact {
 
     width: 100%;
+
+    @include xl {
+        padding: 4em 10em 4em 10em !important;
+    }
 
     .contact-container {
 
