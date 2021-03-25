@@ -1,7 +1,7 @@
 const express = require('express')
 const { promisify } = require('util')
 const mysql = require('mysql')
-const credentials = require('./env/env')
+const credentials = require('./env/credentials')
 
 const PORT = {
     dev: 8000,
@@ -12,7 +12,19 @@ const PORT = {
 const server = express()
 
 // DATABASE
-const pool = mysql.createPool(credentials)
+const pool = mysql.createPool({
+    host: credentials.host,
+    port: credentials.port,
+    user: credentials.user,
+    password: credentials.password,
+    database: credentials.database
+})
+
+pool.getConnection((err) => {
+    if(err) throw err
+    console.log("Connected!")
+})
+
 const query = promisify(pool.query).bind(pool)
 
 const getProjects = async () => {
@@ -22,7 +34,7 @@ const getProjects = async () => {
 
 // GET
 server.get('/projects', (req,res) => {
-    getProjects().then(r => res.send(r))
+    getProjects().then(r => res.json(r))
 })
 
 // LISTEN
