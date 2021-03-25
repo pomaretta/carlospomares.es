@@ -6,37 +6,6 @@ import ProjectStyle from '../../styles/Modules/Projects.module.scss'
 
 import Project from './Project'
 
-const projects = [
-    {
-        title: "Fretastic.com",
-        subtitle: "Guitar App",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing el",
-        href: "#",
-        image: "http://localhost:5500/model/assets/fretty.jpg"
-    },
-    {
-        title: "Fretastic.com",
-        subtitle: "Guitar App",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing el",
-        href: "#",
-        image: "http://localhost:5500/model/assets/fretty.jpg"
-    },
-    {
-        title: "Fretastic.com",
-        subtitle: "Guitar App",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing el",
-        href: "#",
-        image: "http://localhost:5500/model/assets/fretty.jpg"
-    },
-    {
-        title: "Fretastic.com",
-        subtitle: "Guitar App",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing el",
-        href: "#",
-        image: "http://localhost:5500/model/assets/fretty.jpg"
-    }
-]
-
 const ProjectsWrapper = (props,ref) => {
 
     const [elRefs, setElRefs] = React.useState([]);
@@ -46,7 +15,7 @@ const ProjectsWrapper = (props,ref) => {
         
         // CREATE REF
         setElRefs(elRefs => (
-            Array(projects.length).fill().map((_,i) => elRefs[i] || createRef(null))
+            Array(props.projects.length).fill().map((_,i) => elRefs[i] || createRef(null))
         ))
 
         gsap.registerPlugin(ScrollTrigger)
@@ -66,14 +35,14 @@ const ProjectsWrapper = (props,ref) => {
     return (
         <section id={ProjectStyle.projects} ref={ref}>
             {
-                projects.map((project,i) => (
+                props.projects.map((project,i) => (
                     <Project
                         key={i}
-                        title={project.title}
-                        subtitle={project.subtitle}
-                        description={project.description}
-                        href={project.href}
-                        image={project.image}
+                        title={props.language.type == "en" ? project.en.title : project.es.title}
+                        subtitle={props.language.type == "en" ? project.en.subtitle : project.es.subtitle}
+                        description={props.language.type == "en" ? project.en.description : project.es.description}
+                        href={project.en.href}
+                        image={project.en.image}
                         ref={el => elRefs[i] = el}
                     />
                 ))

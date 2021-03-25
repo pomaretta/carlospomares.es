@@ -1,11 +1,11 @@
-import { Component , useEffect , useRef } from 'react'
+import { Component , createRef, useEffect , useRef } from 'react'
 import { gsap, Power4, Back } from 'gsap'
 import Typewriter from 't-writer.js'
 
 // Style
 import HeroStyle from '../../styles/Modules/Hero.module.scss'
 
-const HeroWrapper = () => {
+const HeroWrapper = (props) => {
 
     // HERO
     let hero = useRef(null)
@@ -86,7 +86,7 @@ const HeroWrapper = () => {
 
         writer
             .clear()
-            .type("Hello, I'm Carlos Pomares")
+            .type(props.language.hero.TITLE)
             .removeCursor()
             .start()
 
@@ -95,11 +95,12 @@ const HeroWrapper = () => {
     return (
         <section id={HeroStyle.hero} >
             <div className={HeroStyle.content}>
-                {/* <h1 class="stagger1">Hello, I'm Carlos Pomares</h1> */}
                 <h1 ref={el => heading1 = el}></h1>
                 <div className={HeroStyle.meet} ref={el => heading2 = el}>
                     <span>⚡</span>
-                    <p>I make Java & Web Applications</p>
+                    <p>
+                        {props.language.hero.SUBTITLE}
+                    </p>
                 </div>
                 <svg className={HeroStyle.scroll} ref={el => heading3 = el} width="40" height="77" viewBox="0 0 40 77">
                     <g id="scroll" transform="translate(-253 -787)">

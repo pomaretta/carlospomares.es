@@ -26,17 +26,19 @@ class Heading extends Component {
         return (
             <div id={HeaderStyle.header}>
                 <header>
-                    <a href="." className={HeaderStyle.logo}>Carlos Pomares</a>
+                    <a href="." className={HeaderStyle.logo}>
+                        {this.props.language.header.LOGO}
+                    </a>
                     <nav>
                         <ul>
                             <li>
                                 <a onClick={this.scrollTo}>
-                                    My projects
+                                    {this.props.language.header.nav[0]}
                                 </a>
                             </li>
                             <li>
                                 <a onClick={this.scrollTo}>
-                                    Contact
+                                    {this.props.language.header.nav[1]}
                                 </a>
                             </li>
                             <li>
@@ -108,20 +110,20 @@ class HeaderWrapper extends Component {
         super(props)
 
         this.state = {
-            lang: true,
+            // lang: true,
             langHandler: false
         };
 
-        this.changeLang = this.changeLang.bind(this)
+        // this.changeLang = this.changeLang.bind(this)
         this.clickLang = this.clickLang.bind(this)
 
     }
 
-    changeLang(){
-        this.setState({
-            lang: !this.state.lang
-        })
-    }
+    // changeLang(){
+    //     this.setState({
+    //         lang: !this.state.lang
+    //     })
+    // }
 
     clickLang(){
         this.setState({
@@ -137,8 +139,8 @@ class HeaderWrapper extends Component {
     render(){
         return (
             <div>
-                <Language lang={this.state.lang} active={this.state.langHandler} langHandler={this.changeLang} exit={this.clickLang} contact={this.props.contactRef} projects={this.props.projectRef} />
-                <Heading lang={this.state.lang ? "EN" : "ES"} handleClick={this.clickLang} />
+                <Language language={this.props.language} lang={this.props.lang} active={this.state.langHandler} langHandler={this.props.changeLang} exit={this.clickLang} />
+                <Heading language={this.props.language} lang={this.props.lang ? "EN" : "ES"} handleClick={this.clickLang} />
             </div>
         );
     }

@@ -28,35 +28,35 @@ const ContactWrapper = (props,ref) => {
                 <form onSubmit={handleSubmit}>
                     <div className={ContactStyle.group}>
                         <label htmlFor="name">
-                            Name
+                            {props.language.contact[0].TITLE}
                             <span className={ContactStyle.required}>
                                 *
                             </span>
                         </label>
-                        <input type="text" name="name" id="name" placeholder="Enter Your Name" required />
+                        <input type="text" name="name" id="name" placeholder={props.language.contact[0].PLACEHOLDER} required />
                     </div>
 
                     <div className={ContactStyle.group}>
                         <label htmlFor="email">
-                            Email
+                            {props.language.contact[1].TITLE}
                             <span className={ContactStyle.required}>
                                 *
                             </span>
                         </label>
-                        <input type="text" name="email" id="email" placeholder="Enter Your Email" required />
+                        <input type="text" name="email" id="email" placeholder={props.language.contact[1].PLACEHOLDER} required />
                     </div>
 
                     <div className={ContactStyle.group}>
                         <label htmlFor="message">
-                            message
+                            {props.language.contact[2].TITLE}
                             <span className={ContactStyle.required}>
                                 *
                             </span>
                         </label>
-                        <textarea name="message" id="message" cols="30" rows="10" required defaultValue="Enter Your Message" />
+                        <textarea name="message" id="message" cols="30" rows="10" required defaultValue={props.language.contact[2].PLACEHOLDER} />
                     </div>
 
-                    <input type="submit" value="Send" />
+                    <input type="submit" value={props.language.contact[3].TITLE} />
                     
                 </form>
             </div>
