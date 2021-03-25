@@ -11,6 +11,7 @@ CREATE TABLE Projects (
     description     VARCHAR(255) NOT NULL,
     image           VARCHAR(255) NOT NULL,
     href            VARCHAR(255) NOT NULL,
+    featured        BOOLEAN DEFAULT 0,
     PRIMARY KEY (id)
 );
 

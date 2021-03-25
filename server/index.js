@@ -32,9 +32,18 @@ const getProjects = async () => {
     return projects
 }
 
+const getFeatured = async () => {
+    const projects = await query("SELECT * FROM projects WHERE featured = 1")
+    return projects
+}
+
 // GET
 server.get('/projects', (req,res) => {
     getProjects().then(r => res.json(r))
+})
+
+server.get('/featured',(req,res) => {
+    getFeatured().then(r => res.json(r))
 })
 
 // LISTEN
