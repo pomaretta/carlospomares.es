@@ -1,0 +1,55 @@
+@import './mixins.scss';
+@import './fonts.scss';
+@import './colors.scss';
+
+body {
+    font-family: $font;
+    color: $text-primary;
+    background-color: $bg-primary;
+    height: 100vh;
+    width: 100%;
+}
+
+section {
+
+    padding: 4em 2em;
+
+    @include md {
+
+    }
+
+    @include lg {
+        padding: 4em;
+    }
+
+    @include xl {
+        padding: 10em 10em 4em 10em;
+    }
+
+}
+
+.subtitle {
+    text-transform: uppercase;
+    font-weight: 800;
+    color: $bg-accent2;
+    letter-spacing: .2em;
+    font-size: .85em;
+    margin: 14px 0;
+    width: 100%;
+}
+
+.featured-title {
+    font-weight: bold;
+    font-size: 1.3em;
+    margin-top: -.4em;
+    width: 100%;
+    color: $text-primary;
+}
+
+.featured-desc {
+    // text-align: center;
+    font-weight: 500;
+    line-height: 1.8em;
+    margin-bottom: 3em;
+    margin-top: 14px;
+}

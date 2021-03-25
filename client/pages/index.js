@@ -2,7 +2,8 @@ import Head from 'next/head'
 import styles from '../styles/Modules/Home.module.scss'
 
 // Components
-import Language from '../components/Language'
+import HeaderWrapper from '../components/Header/Header'
+import HeroWrapper from '../components/Hero/Hero'
 
 export default function Home() {
   return (
@@ -13,7 +14,9 @@ export default function Home() {
         <title>Welcome | Carlos Pomares</title>
       </Head>
 
-      <Language />
+      <HeaderWrapper />
+
+      <HeroWrapper />
 
     </div>
   )

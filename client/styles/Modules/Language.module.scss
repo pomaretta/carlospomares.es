@@ -2,6 +2,11 @@
 @import "../colors.scss";
 @import "../mixins.scss";
 
+body.active {
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
 
 #language {
     
@@ -21,11 +26,6 @@
     &.active {
         display: flex;
         animation: languagesAnimation .8s linear;
-    }
-
-    &.disabled {
-        display: flex;
-        animation: languagesAnimationReverse .8s linear;
     }
 
     .exit {
@@ -73,4 +73,13 @@
 
     }
 
+}
+
+@keyframes languagesAnimation {
+    0% {
+        clip-path: circle(0% at 100vw 0)
+    }
+    100% {
+        clip-path: circle(100%);
+    }
 }
