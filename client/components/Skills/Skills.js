@@ -1,0 +1,65 @@
+import { useEffect , useRef } from 'react'
+import { gsap, Power4, Back } from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+
+import SkillStyle from '../../styles/Modules/Skill.module.scss'
+
+import Skill from './Skill'
+
+const SkillWrapper = () => {
+
+    let skill1 = useRef(null)
+    let skill2 = useRef(null)
+    let skill3 = useRef(null)
+
+    useEffect(() => {
+
+        gsap.registerPlugin(ScrollTrigger)
+
+        const skills = [
+            skill1,
+            skill2,
+            skill3
+        ]
+
+        gsap.from(skills,{
+            scrollTrigger: {
+                start: "top bottom"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 1.2,
+            stagger: .3
+        })
+
+    }, [])
+
+    return (
+        <section id={SkillStyle.skills}>
+            <div className={SkillStyle.skillsContainer}>
+                <ul id="scrollTrigger">
+                    <Skill 
+                        image="http://localhost:5500/model/assets/icon-ux.svg"
+                        title="HTML Design"
+                        description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores, odit?" 
+                        ref={el => skill1 = el}
+                    />
+                    <Skill 
+                        image="http://localhost:5500/model/assets/icon-ux.svg"
+                        title="HTML Design"
+                        description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores, odit?"
+                        ref={el => skill2 = el} 
+                    />
+                    <Skill 
+                        image="http://localhost:5500/model/assets/icon-ux.svg"
+                        title="HTML Design"
+                        description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores, odit?"
+                        ref={el => skill3 = el}
+                    />
+                </ul>
+            </div>
+        </section>
+    )
+}
+
+export default SkillWrapper

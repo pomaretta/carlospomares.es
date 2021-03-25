@@ -1,10 +1,11 @@
 import { Component , useEffect , useRef } from 'react'
 import { gsap, Power4, Back } from 'gsap'
+import Typewriter from 't-writer.js'
 
 // Style
 import HeroStyle from '../../styles/Modules/Hero.module.scss'
 
-const HeroWrapper = (props) => {
+const HeroWrapper = () => {
 
     // HERO
     let hero = useRef(null)
@@ -74,13 +75,28 @@ const HeroWrapper = (props) => {
             }
         )
         
+        const options = {
+            loop: false,
+            animateCursor: true,
+            typeColor: 'fff',
+            cursorColor: '#011627'
+        }
+
+        const writer = new Typewriter(heading1,options)
+
+        writer
+            .clear()
+            .type("Hello, I'm Carlos Pomares")
+            .removeCursor()
+            .start()
+
     },[])
 
     return (
         <section id={HeroStyle.hero} >
             <div className={HeroStyle.content}>
                 {/* <h1 class="stagger1">Hello, I'm Carlos Pomares</h1> */}
-                <h1 ref={el => heading1 = el}>Hello, I'm Carlos Pomares</h1>
+                <h1 ref={el => heading1 = el}></h1>
                 <div className={HeroStyle.meet} ref={el => heading2 = el}>
                     <span>⚡</span>
                     <p>I make Java & Web Applications</p>

@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import { Component, useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons'
@@ -30,12 +30,12 @@ class Heading extends Component {
                     <nav>
                         <ul>
                             <li>
-                                <a href="#portfolio">
+                                <a onClick={this.scrollTo}>
                                     My projects
                                 </a>
                             </li>
                             <li>
-                                <a href="#contact">
+                                <a onClick={this.scrollTo}>
                                     Contact
                                 </a>
                             </li>
@@ -137,7 +137,7 @@ class HeaderWrapper extends Component {
     render(){
         return (
             <div>
-                <Language lang={this.state.lang} active={this.state.langHandler} langHandler={this.changeLang} exit={this.clickLang} />
+                <Language lang={this.state.lang} active={this.state.langHandler} langHandler={this.changeLang} exit={this.clickLang} contact={this.props.contactRef} projects={this.props.projectRef} />
                 <Heading lang={this.state.lang ? "EN" : "ES"} handleClick={this.clickLang} />
             </div>
         );

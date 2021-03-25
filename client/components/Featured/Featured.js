@@ -1,0 +1,51 @@
+import { Component , useEffect , useRef } from 'react'
+import { gsap, Power4, Back } from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+
+// Style
+import FeaturedStyle from '../../styles/Modules/Featured.module.scss'
+
+const FeaturedWrapper = (props) => {
+
+    let featured = useRef(null)
+    let featured2 = useRef(null)
+
+    useEffect(() => {
+
+        gsap.registerPlugin(ScrollTrigger)
+
+        const features = [
+            featured,
+            featured2
+        ]
+
+        gsap.from(features,{
+            scrollTrigger: {
+                trigger: '#featured',
+                start: "top bottom"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 1.2,
+            stagger: .3
+        })
+
+    },[])
+
+    return (
+        <section id={FeaturedStyle.featured}>
+            <div className={FeaturedStyle.left} ref={el => featured = el}>
+                <p className={FeaturedStyle.subtitle}>Featured Project</p>
+                <a href={props.href} className={FeaturedStyle.featuredTitle}>
+                    {props.title}
+                </a>
+                <p className={FeaturedStyle.featuredDesc}>
+                    {props.description}
+                </p>
+            </div>
+            <img src={props.image} ref={el => featured2 = el} alt="Project Image" className={FeaturedStyle.right} />
+        </section>
+    )
+}
+
+export default FeaturedWrapper
