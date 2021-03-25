@@ -10,6 +10,8 @@ const FeaturedWrapper = (props) => {
     let featured = useRef(null)
     let featured2 = useRef(null)
 
+    let project = props.language.type == "en" ? props.project.en : props.project.es;
+
     useEffect(() => {
 
         gsap.registerPlugin(ScrollTrigger)
@@ -35,15 +37,19 @@ const FeaturedWrapper = (props) => {
     return (
         <section id={FeaturedStyle.featured}>
             <div className={FeaturedStyle.left} ref={el => featured = el}>
-                <p className={FeaturedStyle.subtitle}>Featured Project</p>
+                <p className={FeaturedStyle.subtitle}>
+                    {props.language.featured.SUBTITLE}
+                </p>
                 <a href={props.href} className={FeaturedStyle.featuredTitle}>
-                    {props.title}
+                    {project.title}
                 </a>
                 <p className={FeaturedStyle.featuredDesc}>
-                    {props.description}
+                    {project.description}
                 </p>
             </div>
-            <img src={props.image} ref={el => featured2 = el} alt="Project Image" className={FeaturedStyle.right} />
+            <a href={project.href}>
+                <img src={project.image} ref={el => featured2 = el} alt="Project Image" className={FeaturedStyle.right} />
+            </a>
         </section>
     )
 }

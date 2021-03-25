@@ -6,21 +6,23 @@ import SkillStyle from '../../styles/Modules/Skill.module.scss'
 
 import Skill from './Skill'
 
-const SkillWrapper = () => {
+const SkillWrapper = (props) => {
 
     let skill1 = useRef(null)
     let skill2 = useRef(null)
     let skill3 = useRef(null)
 
+    let skills = [
+        skill1,
+        skill2,
+        skill3
+    ]
+
     useEffect(() => {
 
         gsap.registerPlugin(ScrollTrigger)
 
-        const skills = [
-            skill1,
-            skill2,
-            skill3
-        ]
+        
 
         gsap.from(skills,{
             scrollTrigger: {
@@ -38,7 +40,18 @@ const SkillWrapper = () => {
         <section id={SkillStyle.skills}>
             <div className={SkillStyle.skillsContainer}>
                 <ul id="scrollTrigger">
-                    <Skill 
+                    {
+                        props.language.skills.map(
+                            (skill,i) => 
+                            <Skill
+                                image={skill.IMAGE}
+                                title={skill.TITLE}
+                                description={skill.DESCRIPTION}
+                                ref={el => skills[i] = el}
+                            />
+                            )
+                    }
+                    {/* <Skill 
                         image="http://localhost:5500/model/assets/icon-ux.svg"
                         title="HTML Design"
                         description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores, odit?" 
@@ -55,7 +68,7 @@ const SkillWrapper = () => {
                         title="HTML Design"
                         description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores, odit?"
                         ref={el => skill3 = el}
-                    />
+                    /> */}
                 </ul>
             </div>
         </section>
