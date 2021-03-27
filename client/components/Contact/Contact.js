@@ -14,7 +14,8 @@ class ContactForm extends Component {
         this.state = {
             name: '',
             mail: '',
-            message: this.props.language.contact[3].PLACEHOLDER
+            message: this.props.language.contact[3].PLACEHOLDER,
+            disabled: false
         }
 
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -39,6 +40,10 @@ class ContactForm extends Component {
     handleSubmit(event) {
         event.preventDefault();
         
+        this.setState({
+            disabled: true
+        })
+
         axios.post('http://localhost:8000/mail',{
             name: this.state.name,
             mail: this.state.mail,
@@ -60,6 +65,9 @@ class ContactForm extends Component {
         .finally(() => {
             setTimeout(() => {
                 this.props.changeActive(false)
+                this.setState({
+                    disabled: false
+                })
             },3500)
         })
     }
@@ -94,7 +102,7 @@ class ContactForm extends Component {
                     </label>
                     <textarea name="message" id="message" cols="30" rows="10" required defaultValue={this.state.message} onChange={this.handleMessageChange} />
                 </div>
-                <input type="submit" value={this.props.language.contact[3].TITLE} />
+                <input type="submit" value={this.props.language.contact[3].TITLE} className={this.state.disabled ? ContactStyle.disabled : ""} />
             </form>
         )
     }
