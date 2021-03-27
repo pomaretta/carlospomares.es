@@ -44,6 +44,7 @@ const SkillWrapper = (props) => {
                         props.language.skills.map(
                             (skill,i) => 
                             <Skill
+                                key={skill.TITLE+i}
                                 image={skill.IMAGE}
                                 title={skill.TITLE}
                                 description={skill.DESCRIPTION}

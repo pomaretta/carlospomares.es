@@ -6,6 +6,7 @@ const databaseCredentials = require('./env/credentials')
 const mailCredentials = require('./env/mail')
 const nodemailer = require('nodemailer')
 const mail = require('./env/mail')
+const cors = require('cors')
 
 const PORT = {
     dev: 8000,
@@ -19,6 +20,7 @@ let query
 const server = express()
 server.use(bodyParser.urlencoded())
 server.use(bodyParser.json())
+server.use(cors())
 
 // DATABASE
 const enableDatabase = () => {
