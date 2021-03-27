@@ -1,4 +1,5 @@
 import React, { Component, createRef, forwardRef, useEffect , useRef } from 'react'
+import { faYinYang } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 import ContactStyle from '../../styles/Modules/Contact.module.scss'
 
@@ -81,6 +82,23 @@ class ContactForm extends Component {
                 </div>
                 <input type="submit" value={this.props.language.contact[3].TITLE} />
             </form>
+        )
+    }
+
+}
+
+class Validation extends Component {
+
+    constructor(props){
+        super(props)
+    }
+
+    render(){
+        return (
+            <div className={ContactStyle.validation,this.props.active ? ContactStyle.active : ""}>
+                
+                {/* <i class="fas fa-yin-yang icon"></i> */}
+            </div>
         )
     }
 

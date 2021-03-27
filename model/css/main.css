@@ -647,6 +647,7 @@ body.active {
 }
 
 #contact .contact-container {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -656,6 +657,41 @@ body.active {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+#contact .contact-container .validation {
+  position: absolute;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: #F7F7F7;
+  border-radius: 4px;
+  z-index: 10;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#contact .contact-container .validation.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media screen and (min-width: 800px) {
+  #contact .contact-container .validation {
+    max-width: 900px;
+  }
+}
+
+#contact .contact-container .validation .icon {
+  font-size: 56px;
+  color: #4BB543;
+  -webkit-animation: spinner 1s infinite linear;
+          animation: spinner 1s infinite linear;
 }
 
 #contact .contact-container form {
@@ -777,5 +813,27 @@ body.active {
   outline: none;
   -webkit-box-shadow: 0 0 0 3px #e71d36;
           box-shadow: 0 0 0 3px #e71d36;
+}
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
 }
 /*# sourceMappingURL=main.css.map */
