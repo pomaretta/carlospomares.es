@@ -17,4 +17,6 @@ CREATE TABLE Projects (
 
 -- INSERTS
 
-INSERT INTO Projects(title,subtitle,description,image,href) VALUES ("Template Title","Template Subtitle","Template Description","https://github.com/pomaretta/taskvisor/blob/master/preview.png","https://github.com/pomaretta/taskvisor/blob/master/preview.png");
+INSERT INTO Projects(title,subtitle,description,image,href) VALUES ("Template Title","Template Subtitle","Template Description","https://raw.githubusercontent.com/pomaretta/taskvisor/master/preview.png","https://github.com/pomaretta/taskvisor");
+INSERT INTO Projects(title,subtitle,description,image,href) VALUES ("Template Title","Template Subtitle","Template Description","https://raw.githubusercontent.com/pomaretta/taskvisor/master/preview.png","https://github.com/pomaretta/taskvisor");
+INSERT INTO Projects(title,subtitle,description,image,href,featured) VALUES ("Template Title","Template Subtitle","Template Description","https://raw.githubusercontent.com/pomaretta/taskvisor/master/preview.png","https://github.com/pomaretta/taskvisor",1);

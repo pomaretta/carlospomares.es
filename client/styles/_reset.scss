@@ -10,6 +10,10 @@
 
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: $font;
   color: $text-primary;

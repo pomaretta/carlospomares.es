@@ -24,12 +24,13 @@ server.use(cors())
 
 // DATABASE
 const enableDatabase = () => {
+
     pool = mysql.createPool({
-        host: credentials.host,
-        port: credentials.port,
-        user: credentials.user,
-        password: credentials.password,
-        database: credentials.database
+        host: databaseCredentials.host,
+        port: databaseCredentials.port,
+        user: databaseCredentials.user,
+        password: databaseCredentials.password,
+        database: databaseCredentials.database
     })
 
     pool.getConnection((err) => {
@@ -42,7 +43,7 @@ const enableDatabase = () => {
 }
 
 const getProjects = async () => {
-    const projects = await query("SELECT * FROM projects")
+    const projects = await query("SELECT * FROM projects WHERE featured = 0")
     return projects
 }
 
@@ -52,13 +53,13 @@ const getFeatured = async () => {
 }
 
 // GET
-// server.get('/projects', (req,res) => {
-//     getProjects().then(r => res.json(r))
-// })
+server.get('/projects', (req,res) => {
+    getProjects().then(r => res.json(r))
+})
 
-// server.get('/featured',(req,res) => {
-//     getFeatured().then(r => res.json(r))
-// })
+server.get('/featured',(req,res) => {
+    getFeatured().then(r => res.json(r))
+})
 
 // MAIL INTEGRATION
 const createMessage = (props) => {
@@ -109,5 +110,9 @@ server.post("/mail",(req,res) => {
 
 // LISTEN
 server.listen(PORT.dev, () => {
+
+    // console.log(`ENABLING Database Listening on ${databaseCredentials.database}`)
+    // enableDatabase()
+
     console.log(`SERVER Listening on port ${PORT.dev}`)
 })

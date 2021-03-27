@@ -1,14 +1,17 @@
 import Head from 'next/head'
 import { Component, createRef } from 'react'
+import axios from 'axios'
+import translate from 'translate'
+translate.engine = "libre"
 
 // Components
-import HeaderWrapper from '../components/Header/Header'
-import HeroWrapper from '../components/Hero/Hero'
-import FeaturedWrapper from '../components/Featured/Featured'
-import SkillWrapper from '../components/Skills/Skills'
-import ProjectsWrapper from '../components/Projects/Projects'
-import ContactWrapper from '../components/Contact/Contact'
-import Skill from '../components/Skills/Skill'
+import HeaderWrapper from './Header/Header'
+import HeroWrapper from './Hero/Hero'
+import FeaturedWrapper from './Featured/Featured'
+import SkillWrapper from './Skills/Skills'
+import ProjectsWrapper from './Projects/Projects'
+import ContactWrapper from './Contact/Contact'
+import Skill from './Skills/Skill'
 
 const language = {
     en: {
@@ -140,7 +143,7 @@ const featuredProject = {
         }
 }
 
-const projects = [
+var projects = [
     {
         en: {
             title: "Hello World!",
@@ -207,25 +210,111 @@ const projects = [
     },
 ]
 
+const toTranslateFeatured = {
+    id: 1,
+    title: "Portfolio Redesign",
+    subtitle: "Portfolio Web",
+    description: 'The project "Portfolio" is based in web development using NextJS and a local server in my home that allow me to deploy a website.',
+    image: "https://raw.githubusercontent.com/pomaretta/ecommerce-web/master/readme/home.PNG",
+    href: "https://github.com/pomaretta/ecommerce-web"
+}
+
+const toTranslate = [
+    {
+        id: 1,
+        title: "Ecommerce web",
+        subtitle: "Ecommerce Application",
+        description: "Lorem ipsum daemon",
+        image: "https://raw.githubusercontent.com/pomaretta/ecommerce-web/master/readme/home.PNG",
+        href: "https://github.com/pomaretta/ecommerce-web"
+    },
+]
+
+var p = []
+
 class Welcome extends Component {
   
     constructor(props){
-      super(props)
+        super(props)
   
-      // STATE
-      this.state = {
-          language: true
-      }
+        // STATE
+        this.state = {
+            language: true,
+            projects: projects,
+            featured: null,
+            isFetching: true
+        }
 
-      // BIND
-      this.changeLang = this.changeLang.bind(this)
-  
-      // REF
-      this.contactRef = createRef()
-      this.projectsRef = createRef()
+        // BIND
+        this.getProjects = this.getProjects.bind(this)
+        this.parseProjects = this.parseProjects.bind(this)
+        this.translateProject = this.translateProject.bind(this)
+        this.changeLang = this.changeLang.bind(this)
+    
+        // REF
+        this.contactRef = createRef()
+        this.projectsRef = createRef()
 
     }
-  
+
+    componentDidMount(){
+        this.setState({
+            isFetching: false
+        })
+    }
+
+    // PROJECTS
+    async getProjects(){
+
+        let data = [];
+
+        data = await axios.get('http://localhost:8000/projects')
+        .catch(err => {
+            console.log(err)
+        })
+
+        let projects = await this.parseProjects(data.data)
+
+        return projects
+    }
+
+    parseProjects(p){
+        p.forEach(async (item,index) => {
+            p[index] = await this.translateProject(item)
+        })
+        return p
+    }
+
+    async translateProject(r){
+
+        let toTranslate = `${r.title};${r.subtitle};${r.description}`
+        let translated = await translate(toTranslate,{to: "es"})
+        translated = translated.split(";")
+
+        const title = translated[0]
+        const subtitle = translated[1]
+        const description = translated[2]
+
+        return {
+            en: {
+                id: r.id,
+                title: r.title,
+                subtitle: r.subtitle,
+                description: r.description,
+                image: r.image,
+                href: r.href
+            },
+            es: {
+                id: r.id,
+                title: title,
+                subtitle: subtitle,
+                description: description,
+                image: r.image,
+                href: r.href
+            }
+        }
+    }
+
     // LANGUAGE
     changeLang(){
       this.setState({
@@ -234,49 +323,35 @@ class Welcome extends Component {
     }
     
     render(){
+        const { isFetching } = this.state;
         return (
         <div>
+            {isFetching ?
+                <h1>Loading...</h1>
+                :
+                <div>
+                    <Head>
+                        <meta name="author" content="Carlos Pomares"/>
+                        <meta name="description" content="A portfolio site to show my skills and projects."/> 
+                        <title>{this.state.language ? "Welcome" : "Bienvenido"} | Carlos Pomares</title>
+                    </Head>
 
-            <Head>
-                <meta name="author" content="Carlos Pomares"/>
-                <meta name="description" content="A portfolio site to show my skills and projects."/> 
-                <title>{this.state.language ? "Welcome" : "Bienvenido"} | Carlos Pomares</title>
-            </Head>
+                    <HeaderWrapper language={this.state.language ? language.en : language.es} lang={this.state.language} changeLang={this.changeLang} />
+                            
+                    <HeroWrapper language={this.state.language ? language.en : language.es} />
 
-            <HeaderWrapper language={this.state.language ? language.en : language.es} lang={this.state.language} changeLang={this.changeLang} />
-        
-            <HeroWrapper language={this.state.language ? language.en : language.es} />
+                    <FeaturedWrapper language={this.state.language ? language.en : language.es} project={featuredProject} />
 
-            <FeaturedWrapper language={this.state.language ? language.en : language.es} project={featuredProject} />
+                    <SkillWrapper language={this.state.language ? language.en : language.es} />
 
-            <SkillWrapper language={this.state.language ? language.en : language.es} />
+                    <ProjectsWrapper language={this.state.language ? language.en : language.es} projects={projects} />
 
-            <ProjectsWrapper language={this.state.language ? language.en : language.es} projects={projects} />
-
-            <ContactWrapper language={this.state.language ? language.en : language.es} />
-
+                    <ContactWrapper language={this.state.language ? language.en : language.es} />
+                </div>
+            }
         </div>
         )
     }
 }
 
 export default Welcome
-
-{/* <div>
-      <Head>
-        <meta name="author" content="Carlos Pomares"/>
-        <meta name="description" content="A portfolio site to show my skills and projects."/> 
-        <title>Welcome | Carlos Pomares</title>
-      </Head>
-
-      <HeaderWrapper />
-
-      <HeroWrapper />
-
-      <FeaturedWrapper title="Hello" description="Simple description" href="#" image="http://localhost:5500/model/assets/project-1.png" />
-
-      <SkillWrapper />
-
-      <ProjectsWrapper ref={el => projectsRef = el} />
-
-      <ContactWrapper ref={el => contactRef = el} /> */}

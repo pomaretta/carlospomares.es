@@ -1,4 +1,6 @@
 import React, { Component, createRef, forwardRef, useEffect , useRef } from 'react'
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faYinYang } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
@@ -58,7 +60,7 @@ class ContactForm extends Component {
         .finally(() => {
             setTimeout(() => {
                 this.props.changeActive(false)
-            },2000)
+            },3500)
         })
     }
 
@@ -118,6 +120,8 @@ class Validation extends Component {
 
 const ContactWrapper = (props,ref) => {
 
+    let contactRef = createRef(null)
+
     const [state,setState] = React.useState({
         validation: false,
         error: false
@@ -132,8 +136,25 @@ const ContactWrapper = (props,ref) => {
 
     setActive = setActive.bind(this)
 
+    useEffect(() => {
+
+        gsap.registerPlugin(ScrollTrigger)
+
+        gsap.from(contactRef,{
+            scrollTrigger: {
+                trigger: "#contact",
+                start: "top bottom"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 1.2,
+            stagger: .3
+        })
+
+    },[])
+
     return (
-        <section id={ContactStyle.contact} ref={ref}>
+        <section id="contact" className={ContactStyle.contact} ref={el => contactRef = el}>
             <div className={ContactStyle.contactContainer}>
                 <Validation language={props.language} active={state.validation} error={state.error} />
                 <ContactForm language={props.language} changeActive={setActive} />

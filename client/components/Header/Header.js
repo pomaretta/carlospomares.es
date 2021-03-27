@@ -32,12 +32,12 @@ class Heading extends Component {
                     <nav>
                         <ul>
                             <li>
-                                <a onClick={this.scrollTo}>
+                                <a href="#projects">
                                     {this.props.language.header.nav[0]}
                                 </a>
                             </li>
                             <li>
-                                <a onClick={this.scrollTo}>
+                                <a href="#contact">
                                     {this.props.language.header.nav[1]}
                                 </a>
                             </li>

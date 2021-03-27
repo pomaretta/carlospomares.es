@@ -22,10 +22,9 @@ const SkillWrapper = (props) => {
 
         gsap.registerPlugin(ScrollTrigger)
 
-        
-
         gsap.from(skills,{
             scrollTrigger: {
+                trigger: "#skills",
                 start: "top bottom"
             },
             y: 50,
@@ -37,7 +36,7 @@ const SkillWrapper = (props) => {
     }, [])
 
     return (
-        <section id={SkillStyle.skills}>
+        <section id="skills" className={SkillStyle.skills}>
             <div className={SkillStyle.skillsContainer}>
                 <ul id="scrollTrigger">
                     {

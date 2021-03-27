@@ -22,6 +22,7 @@ const ProjectsWrapper = (props,ref) => {
 
         gsap.from(elRefs,{
             scrollTrigger: {
+                trigger: "#projects",
                 start: "top center"
             },
             y: 50,
@@ -33,7 +34,7 @@ const ProjectsWrapper = (props,ref) => {
     },[])
 
     return (
-        <section id={ProjectStyle.projects} ref={ref}>
+        <section id="projects" className={ProjectStyle.projects} ref={ref}>
             {
                 props.projects.map((project,i) => (
                     <Project
