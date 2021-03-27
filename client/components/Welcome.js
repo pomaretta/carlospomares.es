@@ -11,7 +11,6 @@ import FeaturedWrapper from './Featured/Featured'
 import SkillWrapper from './Skills/Skills'
 import ProjectsWrapper from './Projects/Projects'
 import ContactWrapper from './Contact/Contact'
-import Skill from './Skills/Skill'
 
 const language = {
     en: {
@@ -33,18 +32,18 @@ const language = {
       skills: [
           {
               TITLE: "Web Development",
-              DESCRIPTION: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores, odit?",
-              IMAGE: "#"
+              DESCRIPTION: "I'm focused on web development, doing some practice projects and learning new technologies",
+              IMAGE: "/images/web-development.png"
           },
           {
-              TITLE: "Web Development",
-              DESCRIPTION: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores, odit?",
-              IMAGE: "#"
+              TITLE: "Java",
+              DESCRIPTION: "As my main language on the currently course I'm doing, I like it. I make some applications and my UI Library for it, Termux",
+              IMAGE: "/images/java.png"
           },
           {
-              TITLE: "Web Development",
-              DESCRIPTION: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores, odit?",
-              IMAGE: "#"
+              TITLE: "Server Manager",
+              DESCRIPTION: "For experimental and practice purpouses, I have a Raspberry Pi running some websites and database services.",
+              IMAGE: "/images/server.png"
           }
       ],
       greetings: {
@@ -88,18 +87,18 @@ const language = {
       skills: [
           {
               TITLE: "Desarrollo Web",
-              DESCRIPTION: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores, odit?",
-              IMAGE: "#"
+              DESCRIPTION: "Estoy enfocado en el desarrollo web, haciendo algunos proyectos de práctica y aprendiendo nuevas tecnologías.",
+              IMAGE: "/images/web-development.png"
           },
           {
-              TITLE: "Desarrollo Web",
-              DESCRIPTION: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores, odit?",
-              IMAGE: "#"
+              TITLE: "Java",
+              DESCRIPTION: "Como lenguaje principal en el curso que estoy haciendo actualmente, me gusta mucho. Hago algunas aplicaciones y he realizado mi libreria para hacer interfaces de usuario, Termux",
+              IMAGE: "/images/java.png"
           },
           {
-              TITLE: "Desarrollo Web",
-              DESCRIPTION: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores, odit?",
-              IMAGE: "#"
+              TITLE: "Gestión de servidor",
+              DESCRIPTION: "Para fines experimentales y prácticos, tengo una Raspberry Pi que ejecuta algunos sitios web y servicios de base de datos.",
+              IMAGE: "/images/server.png"
           },
       ],
       greetings: {
@@ -126,111 +125,99 @@ const language = {
     },
 }
 
-const featuredProject = {
-        en: {
-            title: "Hello World!",
-            subtitle: "Sell app",
-            description: "Lorem ipsum daemon",
-            image: "#",
-            href: "."
-        },
-        es: {
-            title: "Hola Mundo!",
-            subtitle: "App de ventas",
-            description: "Lorem ipsum daemon",
-            image: "#",
-            href: "."
-        }
-}
-
-var projects = [
+const projects = [
     {
-        en: {
-            title: "Hello World!",
-            subtitle: "Sell app",
-            description: "Lorem ipsum daemon",
-            image: "#",
-            href: "."
+        "en": {
+            "id": 1,
+            "title": "Ecommerce web",
+            "subtitle": "Ecommerce Application",
+            "description": "As a quick project barely made in two days, I tried to make a local ecommerce site to practice UI Design and JS.",
+            "image": "https://raw.githubusercontent.com/pomaretta/ecommerce-web/master/readme/home.PNG",
+            "href": "https://github.com/pomaretta/ecommerce-web"
         },
-        es: {
-            title: "Hola Mundo!",
-            subtitle: "App de ventas",
-            description: "Lorem ipsum daemon",
-            image: "#",
-            href: "."
+        "es": {
+            "id": 1,
+            "title": "Ecommerce web",
+            "subtitle": " Ecommerce Application",
+            "description": " Como un proyecto rápido apenas realizado en dos días, intenté hacer un sitio de comercio electrónico local para practicar UI Design y JS.",
+            "image": "https://raw.githubusercontent.com/pomaretta/ecommerce-web/master/readme/home.PNG",
+            "href": "https://github.com/pomaretta/ecommerce-web"
         }
     },
     {
-        en: {
-            title: "Hello World!",
-            subtitle: "Sell app",
-            description: "Lorem ipsum daemon",
-            image: "#",
-            href: "."
+        "en": {
+            "id": 2,
+            "title": "Taskvisor",
+            "subtitle": "Exercice Viewer Application",
+            "description": "With this app the user can go throught modules and see the tasks that it contains, with a preview tool, where the user can see the result of the .HTML with an embed element, and a raw .HTML view, that is the source code.",
+            "image": "https://raw.githubusercontent.com/pomaretta/taskvisor/master/preview.png",
+            "href": "https://github.com/pomaretta/taskvisor"
         },
-        es: {
-            title: "Hola Mundo!",
-            subtitle: "App de ventas",
-            description: "Lorem ipsum daemon",
-            image: "#",
-            href: "."
+        "es": {
+            "id": 2,
+            "title": "Taskvisor",
+            "subtitle": "Aplicación del Visor de Ejercicio",
+            "description": "Con esta aplicación el usuario puede pasar por módulos y ver las tareas que contiene, con una herramienta de vista previa, donde el usuario puede ver el resultado de la . HTML con un elemento embed, y un crudo. Vista HTML, ese es el código fuente.",
+            "image": "https://raw.githubusercontent.com/pomaretta/taskvisor/master/preview.png",
+            "href": "https://github.com/pomaretta/taskvisor"
         }
     },
     {
-        en: {
-            title: "Hello World!",
-            subtitle: "Sell app",
-            description: "Lorem ipsum daemon",
-            image: "#",
-            href: "."
+        "en": {
+            "id": 3,
+            "title": "Toapp",
+            "subtitle": "To Do Application",
+            "description": "A web application that allows the user to create, delete and modify tasks. They are stored on browser using LocalStorage API.",
+            "image": "/images/toapp.png",
+            "href": "http://toapp.carlospomares.es"
         },
-        es: {
-            title: "Hola Mundo!",
-            subtitle: "App de ventas",
-            description: "Lorem ipsum daemon",
-            image: "#",
-            href: "."
+        "es": {
+            "id": 3,
+            "title": "Toapp",
+            "subtitle": " To Do Application",
+            "description": " Una aplicación web que permite al usuario crear, eliminar y modificar tareas. Se almacenan en el navegador utilizando la API LocalStorage.",
+            "image": "/images/toapp.png",
+            "href": "http://toapp.carlospomares.es"
         }
     },
     {
-        en: {
-            title: "Hello World!",
-            subtitle: "Sell app",
-            description: "Lorem ipsum daemon",
-            image: "#",
-            href: "."
+        "en": {
+            "id": 4,
+            "title": "First Portfolio",
+            "subtitle": "Portofolio Website",
+            "description": "This was my first complete website for showing myself.",
+            "image": "/images/portfolio-vn.png",
+            "href": "https://github.com/pomaretta/portfolio-vn"
         },
-        es: {
-            title: "Hola Mundo!",
-            subtitle: "App de ventas",
-            description: "Lorem ipsum daemon",
-            image: "#",
-            href: "."
+        "es": {
+            "id": 4,
+            "title": "Primer Cartero",
+            "subtitle": "Portofolio Sitio web",
+            "description": "Este fue mi primer sitio web completo para mostrarme.",
+            "image": "/images/portfolio-vn.png",
+            "href": "https://github.com/pomaretta/portfolio-vn"
         }
-    },
+    }
 ]
 
-const toTranslateFeatured = {
-    id: 1,
-    title: "Portfolio Redesign",
-    subtitle: "Portfolio Web",
-    description: 'The project "Portfolio" is based in web development using NextJS and a local server in my home that allow me to deploy a website.',
-    image: "https://raw.githubusercontent.com/pomaretta/ecommerce-web/master/readme/home.PNG",
-    href: "https://github.com/pomaretta/ecommerce-web"
-}
-
-const toTranslate = [
-    {
-        id: 1,
-        title: "Ecommerce web",
-        subtitle: "Ecommerce Application",
-        description: "Lorem ipsum daemon",
-        image: "https://raw.githubusercontent.com/pomaretta/ecommerce-web/master/readme/home.PNG",
-        href: "https://github.com/pomaretta/ecommerce-web"
+const featured = {
+    "en": {
+        "id": 5,
+        "title": "Portfolio Redesign",
+        "subtitle": "Portfolio Web",
+        "description": "The project \"Portfolio\" is based in web development using NextJS and a local server in my home that allow me to deploy a website.",
+        "image": "/images/portfolio-rd.png",
+        "href": "https://github.com/pomaretta/carlospomares.es"
     },
-]
-
-var p = []
+    "es": {
+        "id": 5,
+        "title": "Rediseño de portfolio",
+        "subtitle": "Portfolio Web",
+        "description": "El proyecto Portfolio se basa en el desarrollo web utilizando NextJS y un servidor local en mi casa que me permite desplegar un sitio web.",
+        "image": "/images/portfolio-rd.png",
+        "href": "https://github.com/pomaretta/carlospomares.es"
+    }
+}
 
 class Welcome extends Component {
   
@@ -264,16 +251,16 @@ class Welcome extends Component {
     }
 
     // PROJECTS
-    async getProjects(){
+    async getProjects(p){
 
         let data = [];
 
-        data = await axios.get('http://localhost:8000/projects')
-        .catch(err => {
-            console.log(err)
-        })
+        // data = await axios.get('http://localhost:8000/projects')
+        // .catch(err => {
+        //     console.log(err)
+        // })
 
-        let projects = await this.parseProjects(data.data)
+        let projects = await this.parseProjects(p)
 
         return projects
     }
@@ -340,7 +327,7 @@ class Welcome extends Component {
                             
                     <HeroWrapper language={this.state.language ? language.en : language.es} />
 
-                    <FeaturedWrapper language={this.state.language ? language.en : language.es} project={featuredProject} />
+                    <FeaturedWrapper language={this.state.language ? language.en : language.es} project={featured} />
 
                     <SkillWrapper language={this.state.language ? language.en : language.es} />
 

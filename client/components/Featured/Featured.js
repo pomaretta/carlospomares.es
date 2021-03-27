@@ -41,10 +41,10 @@ const FeaturedWrapper = (props) => {
                     {props.language.featured.SUBTITLE}
                 </p>
                 <a href={props.href} className={FeaturedStyle.featuredTitle}>
-                    {project.title}
+                    {props.language.type == "en" ? props.project.en.title : props.project.es.title}
                 </a>
                 <p className={FeaturedStyle.featuredDesc}>
-                    {project.description}
+                    {props.language.type == "en" ? props.project.en.description : props.project.es.description}
                 </p>
             </div>
             <a href={project.href}>
