@@ -44,6 +44,10 @@ const language = {
               IMAGE: "#"
           }
       ],
+      greetings: {
+        TITLE: "Thank you",
+        ERROR: "An error has ocurred"
+      },
       contact: [
           {
               TITLE: "Name",
@@ -95,6 +99,10 @@ const language = {
               IMAGE: "#"
           },
       ],
+      greetings: {
+        TITLE: "Gracias",
+        ERROR: "Ha ocurrido un problema"
+      },
       contact: [
           {
               TITLE: "Nombre",

@@ -1,4 +1,5 @@
 import React, { Component, createRef, forwardRef, useEffect , useRef } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faYinYang } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 import ContactStyle from '../../styles/Modules/Contact.module.scss'
@@ -41,13 +42,24 @@ class ContactForm extends Component {
             mail: this.state.mail,
             message: this.state.message
         })
-        .then( response =>
-            console.log(response)
-        )
-        .catch( error => 
-            console.log(error)
-        )
+        .then(res => {
+            this.props.changeActive(false)
 
+            this.setState({
+                name: '',
+                mail: '',
+                message: ''
+            })
+
+        })
+        .catch(err => {
+            this.props.changeActive(true)
+        })
+        .finally(() => {
+            setTimeout(() => {
+                this.props.changeActive(false)
+            },2000)
+        })
     }
 
     render(){
@@ -95,9 +107,9 @@ class Validation extends Component {
 
     render(){
         return (
-            <div className={ContactStyle.validation,this.props.active ? ContactStyle.active : ""}>
-                
-                {/* <i class="fas fa-yin-yang icon"></i> */}
+            <div className={[ContactStyle.validation,this.props.active ? ContactStyle.active : ""].join(" ")}>
+                <h3>{this.props.error ? this.props.language.greetings.ERROR : this.props.language.greetings.TITLE}!</h3>
+                <FontAwesomeIcon icon={faYinYang} className={[ContactStyle.icon,this.props.error ? ContactStyle.error : ""].join(" ")} />
             </div>
         )
     }
@@ -105,10 +117,26 @@ class Validation extends Component {
 }
 
 const ContactWrapper = (props,ref) => {
+
+    const [state,setState] = React.useState({
+        validation: false,
+        error: false
+    })
+    
+    let setActive = (flag) => {
+        setState({
+            validation: !state.validation,
+            error: flag
+        })
+    }
+
+    setActive = setActive.bind(this)
+
     return (
         <section id={ContactStyle.contact} ref={ref}>
             <div className={ContactStyle.contactContainer}>
-                <ContactForm language={props.language} />
+                <Validation language={props.language} active={state.validation} error={state.error} />
+                <ContactForm language={props.language} changeActive={setActive} />
             </div>
         </section>
     );

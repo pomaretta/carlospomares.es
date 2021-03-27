@@ -10,38 +10,56 @@
         padding: 4em 10em 4em 10em !important;
     }
 
-    .validation {
-        position: absolute;
-        display: none;
-        width: 100%;
-        height: 100%;
-        background-color: $bg-secondary;
-        border-radius: 4px;
-        z-index: 10;
-        align-items: center;
-        justify-content: center;
-
-        &.active {
-            display: flex;
-        }
-
-        @include md {
-            max-width: 900px;
-        }
-
-        .icon {
-            font-size: 56px;
-            color: $success;
-            animation: spinner 1s infinite linear;
-        }
-
-    }
-
     .contactContainer {
 
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
+
+        .validation {
+
+            position: absolute;
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            background-color: $bg-secondary;
+            border-radius: 4px;
+            z-index: 10;
+            align-items: center;
+            justify-content: center;
+            padding: 2em;
+
+            &.active {
+                display: flex;
+            }
+
+            @include md {
+                max-width: 900px;
+            }
+
+            h3 {
+                font-size: 20px;
+                margin-bottom: 25px;
+            }
+
+            @include md {
+                font-size: 26px;
+            }
+
+            .icon {
+                font-size: 56px;
+                color: $success;
+                animation: spinner 1s infinite linear;
+
+                &.error {
+                    color: #FF3333;
+                }
+
+            }
+
+        }
 
         form {
 
