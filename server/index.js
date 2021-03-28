@@ -7,10 +7,12 @@ const mailCredentials = require('./env/mail')
 const nodemailer = require('nodemailer')
 const mail = require('./env/mail')
 const cors = require('cors')
+const fs = require('fs');
+const https = require('https');
 
 const PORT = {
     dev: 8000,
-    build: 3000
+    build: 8443
 }
 
 let pool
@@ -109,10 +111,9 @@ server.post("/mail",(req,res) => {
 })
 
 // LISTEN
-server.listen(PORT.dev, () => {
-
-    // console.log(`ENABLING Database Listening on ${databaseCredentials.database}`)
-    // enableDatabase()
-
-    console.log(`SERVER Listening on port ${PORT.dev}`)
+https.createServer({
+    key: fs.readFileSync('./env/https/privkey.pem'),
+    cert: fs.readFileSync('./env/https/cert.pem')
+},server).listen(PORT.build, () => {
+    console.log(`SERVER Listening on port ${PORT.build}`)
 })
