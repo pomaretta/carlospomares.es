@@ -191,9 +191,9 @@ const projects = [
         },
         "es": {
             "id": 4,
-            "title": "Primer Cartero",
+            "title": "Primer Portfolio",
             "subtitle": "Portofolio Sitio web",
-            "description": "Este fue mi primer sitio web completo para mostrarme.",
+            "description": "Este fue mi primer sitio web completo para mostrar mis proyectos y aficiones.",
             "image": "/images/portfolio-vn.png",
             "href": "https://github.com/pomaretta/portfolio-vn"
         }
