@@ -88,7 +88,7 @@ class Language extends Component {
     render(){
         return (
             <div id={LanguageStyle.language} className={this.props.active ? LanguageStyle.active : ""}>
-                <a href="#" className={LanguageStyle.exit} onClick={this.props.exit}>
+                <a className={LanguageStyle.exit} onClick={this.props.exit}>
                     <FontAwesomeIcon icon={faTimes} />
                 </a>
                 <ul>
@@ -130,9 +130,9 @@ class HeaderWrapper extends Component {
             langHandler: !this.state.langHandler
         });
         if(!this.state.langHandler){
-            document.body.classList.add("active");
+            document.body.style = "height: 100vh; overflow: hidden";
         } else {
-            document.body.classList.remove("active");
+            document.body.style = "overflow: unset";
         }
     }
 

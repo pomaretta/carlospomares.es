@@ -32,7 +32,8 @@ body.active {
         position: absolute;
         top: 25px;
         right: 25px;
-        
+        cursor: pointer;
+
         color: $bg-primary;
         font-size: 30px;
 
@@ -55,6 +56,7 @@ body.active {
             margin-bottom: 50px;
             color: $bg-primary;
             transition: transform 1s ease-in-out;
+            cursor: pointer;
 
             a {
                 color: inherit;
