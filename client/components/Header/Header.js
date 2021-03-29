@@ -67,7 +67,7 @@ class Heading extends Component {
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.linkedin.com/in/carlos-pomares-949292180/" target="_blank">
+                            <a href="https://www.linkedin.com/in/pomaretta" target="_blank">
                                 <FontAwesomeIcon icon={faLinkedin} className={HeaderStyle.icon} />
                             </a>
                         </li>
