@@ -11,10 +11,12 @@ import FeaturedWrapper from './Featured/Featured'
 import SkillWrapper from './Skills/Skills'
 import ProjectsWrapper from './Projects/Projects'
 import ContactWrapper from './Contact/Contact'
+import Loader from './Loader/Loader'
 
 const language = {
     en: {
       type: "en",
+      loader: "Loading",
       header: {
           LOGO: "Carlos Pomares",
           nav: [
@@ -70,6 +72,7 @@ const language = {
     },
     es: {
       type: "es",
+      loader: "Cargando",
       header: {
           LOGO: "Carlos Pomares",
           nav: [
@@ -314,7 +317,7 @@ class Welcome extends Component {
         return (
         <div>
             {isFetching ?
-                <h1>Loading...</h1>
+                <Loader language={this.state.language ? language.en : language.es} isFetching={isFetching} />
                 :
                 <div>
                     <Head>
