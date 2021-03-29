@@ -836,4 +836,95 @@ body.active {
             transform: rotate(360deg);
   }
 }
+
+.loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #e71d36;
+  z-index: 50;
+  opacity: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transition: opacity 1s ease-out;
+  transition: opacity 1s ease-out;
+}
+
+.loader p {
+  font-size: 2.3em;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 25px;
+  color: #fdfffc;
+}
+
+.loader .dots {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+
+.loader .dots :nth-child(1) {
+  margin-left: 0;
+}
+
+.loader .dots :nth-child(1) {
+  margin-right: 0;
+}
+
+.loader .dots .dot {
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 65px;
+  opacity: 1;
+  color: #fdfffc;
+  -webkit-animation: dot 1s infinite;
+          animation: dot 1s infinite;
+}
+
+.loader .dots .dot--2 {
+  -webkit-animation-delay: 250ms;
+          animation-delay: 250ms;
+}
+
+.loader .dots .dot--3 {
+  -webkit-animation-delay: 500ms;
+          animation-delay: 500ms;
+}
+
+@-webkit-keyframes dot {
+  50% {
+    color: transparent;
+  }
+}
+
+@keyframes dot {
+  50% {
+    color: transparent;
+  }
+}
+
+.loader.active {
+  opacity: 1;
+}
 /*# sourceMappingURL=main.css.map */
