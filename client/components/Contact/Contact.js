@@ -91,7 +91,7 @@ class ContactForm extends Component {
                             *
                         </span>
                     </label>
-                    <input type="text" name="email" id="email" placeholder={this.props.language.contact[1].PLACEHOLDER} onChange={this.handleMailChange} value={this.state.mail} required />
+                    <input type="email" name="email" id="email" placeholder={this.props.language.contact[1].PLACEHOLDER} onChange={this.handleMailChange} value={this.state.mail} required />
                 </div>
                 <div className={ContactStyle.group}>
                     <label htmlFor="message">
