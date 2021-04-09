@@ -229,7 +229,7 @@ class Welcome extends Component {
   
         // STATE
         this.state = {
-            language: true,
+            language: this.setLang(),
             projects: projects,
             featured: null,
             isFetching: true
@@ -240,6 +240,7 @@ class Welcome extends Component {
         this.parseProjects = this.parseProjects.bind(this)
         this.translateProject = this.translateProject.bind(this)
         this.changeLang = this.changeLang.bind(this)
+        this.setLang = this.setLang.bind(this)
     
         // REF
         this.contactRef = createRef()
@@ -307,9 +308,22 @@ class Welcome extends Component {
 
     // LANGUAGE
     changeLang(){
+        if (typeof window !== "undefined") {
+            localStorage.setItem('lang',!this.state.language)
+        }
       this.setState({
           language: !this.state.language
       })
+    }
+
+    setLang(){
+        if(typeof window !== "undefined"){
+            if(localStorage.getItem('lang') == null){
+                return true
+            } else {
+                return localStorage.getItem('lang') == 'true'
+            }
+        }
     }
     
     render(){
