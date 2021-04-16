@@ -61,8 +61,13 @@
                         padding: 0 1em;
                         width: 100%;
                         font-weight: 300;
-                        font-size: inherit;
+                        font-size: 12px;
                         cursor: pointer;
+
+                        @include md {
+                            font-size: inherit;
+                        }
+
                     }
 
                 }
