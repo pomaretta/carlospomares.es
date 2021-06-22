@@ -1,6 +1,7 @@
 version: '3.7'
 
-services: 
+container_name: carlospomares.es
+services:
     client:
         image: carlospomares-client
         container_name: cp-client

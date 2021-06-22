@@ -3,7 +3,7 @@
 // ======================== //
 
 import { Router } from 'express'
-import { Transport, Message } from '../service/mail'
+import { Transport, Message } from '../service/mail.js'
 
 // CONFIG
 
@@ -46,7 +46,7 @@ router.post('/api/mail', (req,res) => {
     }
 
     // Create message
-    let message = Message(
+    let message = new Message(
         MessageConfig,
         body
     ).getMessage()
@@ -62,4 +62,4 @@ router.post('/api/mail', (req,res) => {
 })
 
 
-module.exports = router
+export default router

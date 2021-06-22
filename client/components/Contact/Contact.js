@@ -44,7 +44,7 @@ class ContactForm extends Component {
             disabled: true
         })
 
-        axios.post(process.env.MAIL,{
+        axios.post(process.env.NEXT_PUBLIC_MAIL,{
             name: this.state.name,
             mail: this.state.mail,
             message: this.state.message

@@ -5,7 +5,7 @@ FROM node:alpine AS deps
 
 WORKDIR /app
 
-COPY package.json .
+COPY ./client/package.json .
 
 RUN npm install
 
@@ -16,11 +16,12 @@ FROM node:alpine AS builder
 
 WORKDIR /app
 
-COPY . .
+COPY ./client .
+COPY ./client/package.json .
 
 COPY --from=deps /app/node_modules ./node_modules
 
-RUN npm build
+RUN npm run build
 
 # ============================ #
 

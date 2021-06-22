@@ -32,7 +32,7 @@ api.use(helmet())
 
 // ROUTES
 
-import mail from './routes/mail' // MAIL ROUTES
+import mail from './routes/mail.js' // MAIL ROUTES
 api.use(mail)
 
 // LISTEN

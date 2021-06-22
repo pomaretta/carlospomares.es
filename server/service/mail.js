@@ -78,7 +78,4 @@ class Transport {
 
 }
 
-module.exports = {
-    Message,
-    Transport
-}
+export { Message, Transport }
