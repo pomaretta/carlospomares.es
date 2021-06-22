@@ -1,119 +1,65 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const { promisify } = require('util')
-const mysql = require('mysql')
-const databaseCredentials = require('./env/credentials')
-const mailCredentials = require('./env/mail')
-const nodemailer = require('nodemailer')
-const mail = require('./env/mail')
-const cors = require('cors')
-const fs = require('fs');
-const https = require('https');
+// ======================== //
+// CARLOSPOMARES API        //
+// ======================== //
 
-const PORT = {
-    dev: 8000,
-    build: 8443
+// DEPENDENCIES
+import express from 'express'
+import https from 'https'
+import cors from 'cors'
+import fs from 'fs'
+import compression from 'compression'
+import helmet from 'helmet'
+
+// CONFIG
+const CONFIG = {
+    hostname: process.env.HOSTNAME,
+    port: process.env.PORT,
+    key: process.env.CERT_KEY,
+    cert: process.env.CERT_SECRET
 }
 
-let pool
-let query
+// INIT
 
-// EXPRESS
-const server = express()
-server.use(bodyParser.urlencoded())
-server.use(bodyParser.json())
-server.use(cors())
+const api = express()
 
-// DATABASE
-const enableDatabase = () => {
+// MIDDLEWARES
 
-    pool = mysql.createPool({
-        host: databaseCredentials.host,
-        port: databaseCredentials.port,
-        user: databaseCredentials.user,
-        password: databaseCredentials.password,
-        database: databaseCredentials.database
-    })
+api.use(express.urlencoded({extended: true}))
+api.use(express.json())
+api.use(cors())
+api.use(compression())
+api.use(helmet())
 
-    pool.getConnection((err) => {
-        if(err) throw err
-        console.log("Connected!")
-    })
+// ROUTES
 
-    query = promisify(pool.query).bind(pool)
-
-}
-
-const getProjects = async () => {
-    const projects = await query("SELECT * FROM projects WHERE featured = 0")
-    return projects
-}
-
-const getFeatured = async () => {
-    const projects = await query("SELECT * FROM projects WHERE featured = 1")
-    return projects
-}
-
-// GET
-server.get('/projects', (req,res) => {
-    getProjects().then(r => res.json(r))
-})
-
-server.get('/featured',(req,res) => {
-    getFeatured().then(r => res.json(r))
-})
-
-// MAIL INTEGRATION
-const createMessage = (props) => {
-    return {
-        from: mailCredentials.user,
-        to: mailCredentials.destinationUser,
-        subject: "Message from Personal Website",
-        generateTextFromHTML: true,
-        html: `<h1>${props.name}</h1><br/><p>Email: ${props.email}</p><br/><p>Message: ${props.message}</p>`
-    }
-}
-
-server.post("/mail",(req,res) => {
-    
-    const transport = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
-        secure: true,
-        auth: {
-            type: mailCredentials.type,
-            user: mailCredentials.user,
-            clientId: mailCredentials.clientId,
-            clientSecret: mailCredentials.clientSecret,
-            refreshToken: mailCredentials.refreshToken,
-            accessToken: mailCredentials.accessToken
-        }
-    });
-
-    // GET NAME
-    const name = req.body.name
-    // GET MAIL
-    const mail = req.body.mail
-    // GET MESSAGE
-    const message = req.body.message
-
-    const msg = createMessage({name: name, email: mail, message: message})
-
-    transport.sendMail(msg,(err,response) => {
-        if(err){
-            res.sendStatus(400)
-        } else {
-            res.sendStatus(200)
-        }
-        transport.close()
-    })
-    
-})
+import mail from './routes/mail' // MAIL ROUTES
+api.use(mail)
 
 // LISTEN
-https.createServer({
-    key: fs.readFileSync('./env/https/privkey.pem'),
-    cert: fs.readFileSync('./env/https/cert.pem')
-},server).listen(PORT.build, () => {
-    console.log(`SERVER Listening on port ${PORT.build}`)
-})
+
+if (process.env.PROTOCOL == "https") {
+    https.createServer(
+        {
+            key: fs.readFileSync(CONFIG.key),
+            cert: fs.readFileSync(CONFIG.cert)
+        },api
+    ).listen(
+        CONFIG.port,
+        CONFIG.hostname,
+        () => {
+            console.log(
+                `API Listening on Hostname=${CONFIG.hostname}, Port=${CONFIG.port} over HTTPS, PRODUCTION=${process.env.NODE_ENV == 'production'}`
+            )
+        }
+    )
+} else {
+    api.listen(
+        CONFIG.port,
+        CONFIG.hostname,
+        () => {
+            console.log(
+                `API Listening on Hostname=${CONFIG.hostname}, Port=${CONFIG.port} over HTTP, PRODUCTION=${process.env.NODE_ENV == 'production'}`
+            )
+        }
+    )
+}
