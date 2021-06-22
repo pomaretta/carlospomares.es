@@ -259,11 +259,6 @@ class Welcome extends Component {
 
         let data = [];
 
-        // data = await axios.get('http://localhost:8000/projects')
-        // .catch(err => {
-        //     console.log(err)
-        // })
-
         let projects = await this.parseProjects(p)
 
         return projects

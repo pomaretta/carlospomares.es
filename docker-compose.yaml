@@ -1,0 +1,49 @@
+version: '3.7'
+
+services: 
+    client:
+        image: carlospomares-client
+        container_name: cp-client
+        ports: 
+            - "3001:3000"
+        environment: 
+            - NODE_ENV=
+            - MAIL=
+        build:
+            context: .
+            dockerfile: ./client/Dockerfile
+        depends_on:
+            - server
+    server:
+        image: carlospomares-server
+        container_name: cp-server
+        expose:
+            - "3000"
+        ports: 
+            - "3002:3000"
+        volumes: 
+            - "/path/to/env:/app/env"
+        environment: 
+            - NODE_ENV=
+            # GLOBAL
+            - HOSTNAME=
+            - PORT=
+            - CERT_KEY=
+            - CERT_SECRET=
+            # MAIL
+            - MAIL_HOST=
+            - MAIL_PORT=
+            - MAIL_TYPE=
+            # MAIL AUTH
+            - MAIL_USER=
+            - MAIL_CLIENTID=
+            - MAIL_CLIENTSECRET=
+            - MAIL_REFRESHTOKEN=
+            - MAIL_PROCESSTOKEN=
+            # MAIL MESSAGE
+            - MAIL_FROM=
+            - MAIL_TO=
+            - MAIL_SUBJECT=
+        build:
+            context: .
+            dockerfile: ./server/Dockerfile

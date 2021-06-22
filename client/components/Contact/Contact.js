@@ -44,7 +44,7 @@ class ContactForm extends Component {
             disabled: true
         })
 
-        axios.post('https://carlospomares.es:8443/mail',{
+        axios.post(process.env.MAIL,{
             name: this.state.name,
             mail: this.state.mail,
             message: this.state.message
