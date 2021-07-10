@@ -33,7 +33,7 @@ const MessageConfig = {
 const router = Router()
 
 // POST
-router.post('v1/mail', (req,res) => {
+router.post('/v1/mail', (req,res) => {
 
     // Initialize transport
     let transport = TransportService.createTransport()
