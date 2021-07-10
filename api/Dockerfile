@@ -5,7 +5,7 @@ FROM node:alpine as deps
 
 WORKDIR /app
 
-COPY ./server/package.json .
+COPY package.json .
 
 RUN npm install
 
@@ -20,9 +20,9 @@ WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED 1
 
 # Copy from deps
-COPY --from=deps /app/node_modules ./node_modules
-COPY --from=deps /app/package.json ./package.json
+COPY --from=deps /app/node_modules /app/node_modules
+COPY --from=deps /app/package.json /app/package.json
 
-COPY ./server .
+COPY . .
 
 CMD [ "npm", "start" ]

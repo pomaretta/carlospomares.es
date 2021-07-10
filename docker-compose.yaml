@@ -1,6 +1,5 @@
-version: '3.8'
+version: "3.7"
 
-container_name: carlospomares.es
 services:
     server:
         image: carlospomares-server
@@ -10,7 +9,7 @@ services:
             dockerfile: Dockerfile
         depends_on:
             - web
-        port:
+        ports:
             - "80:80"
     web:
         image: carlospomares-web
@@ -19,7 +18,6 @@ services:
             - 3000
         environment: 
             - NODE_ENV=
-            - MAIL=
         build:
             context: ./client
             dockerfile: Dockerfile
