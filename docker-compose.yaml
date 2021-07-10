@@ -1,29 +1,35 @@
-version: '3.7'
+version: '3.8'
 
 container_name: carlospomares.es
 services:
-    client:
-        image: carlospomares-client
-        container_name: cp-client
-        ports: 
-            - "3001:3000"
+    server:
+        image: carlospomares-server
+        container_name: cp-server
+        build:
+            context: ./server
+            dockerfile: Dockerfile
+        depends_on:
+            - web
+        port:
+            - "80:80"
+    web:
+        image: carlospomares-web
+        container_name: cp-web
+        expose:
+            - 3000
         environment: 
             - NODE_ENV=
             - MAIL=
         build:
-            context: .
-            dockerfile: ./client/Dockerfile
+            context: ./client
+            dockerfile: Dockerfile
         depends_on:
-            - server
-    server:
-        image: carlospomares-server
-        container_name: cp-server
+            - api
+    api:
+        image: carlospomares-api
+        container_name: cp-api
         expose:
             - "3000"
-        ports: 
-            - "3002:3000"
-        volumes: 
-            - "/path/to/env:/app/env"
         environment: 
             - NODE_ENV=
             # GLOBAL
@@ -46,5 +52,5 @@ services:
             - MAIL_TO=
             - MAIL_SUBJECT=
         build:
-            context: .
-            dockerfile: ./server/Dockerfile
+            context: ./api
+            dockerfile: Dockerfile

@@ -1,0 +1,28 @@
+# ======================== #
+
+# DEPENDENCIES
+FROM node:alpine as deps
+
+WORKDIR /app
+
+COPY ./server/package.json .
+
+RUN npm install
+
+# ======================== #
+
+# RUNNER
+FROM node:alpine as runner
+
+WORKDIR /app
+
+# Telemetry disabled
+ENV NEXT_TELEMETRY_DISABLED 1
+
+# Copy from deps
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/package.json ./package.json
+
+COPY ./server .
+
+CMD [ "npm", "start" ]
