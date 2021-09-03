@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { Component, createRef } from 'react'
 import axios from 'axios'
+import CookieConsent, { Cookies, getCookieConsentValue } from "react-cookie-consent"
 import translate from 'translate'
 translate.engine = "libre"
 
@@ -303,7 +304,7 @@ class Welcome extends Component {
 
     // LANGUAGE
     changeLang(){
-        if (typeof window !== "undefined") {
+        if (typeof window !== "undefined" && getCookieConsentValue('cookieAgreement')) {
             localStorage.setItem('lang',!this.state.language)
         }
       this.setState({
@@ -329,6 +330,18 @@ class Welcome extends Component {
                 <Loader language={this.state.language ? language.en : language.es} isFetching={isFetching} />
                 :
                 <div>
+
+                    <CookieConsent
+                    location="bottom"
+                    buttonText="Accept"
+                    cookieName="cookieAgreement"
+                    style={{ background: "#e71d36" }}
+                    buttonStyle={{ color: "white", fontSize: "13px", background: "#011627", borderRadius: "4px" }}
+                    expires={150}
+                    >
+                    This website uses cookies to enhance the user experience.
+                    </CookieConsent>
+
                     <Head>
                         <meta name="author" content="Carlos Pomares"/>
                         <meta name="description" content="A portfolio site to show my skills and projects."/> 
