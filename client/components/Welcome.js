@@ -26,8 +26,8 @@ const language = {
           ]
       },
       hero: {
-          TITLE: "Hello, I'm Carlos Pomares",
-          SUBTITLE: "I make Java & Web Applications"
+          TITLE: "Hey, this is Carlos Pomares",
+          SUBTITLE: "I'm Software Developer"
       },
       featured: {
           SUBTITLE: "Featured Project"
@@ -82,8 +82,8 @@ const language = {
           ]
       },
       hero: {
-          TITLE: "Hola, me llamo Carlos Pomares",
-          SUBTITLE: "Soy desarrollador de aplicaciones web y multiplataforma."
+          TITLE: "Hola, soy Carlos Pomares",
+          SUBTITLE: "Desarrollador de Software"
       },
       featured: {
         SUBTITLE: "Proyecto destacado"
