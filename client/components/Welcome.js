@@ -27,7 +27,7 @@ const language = {
       },
       hero: {
           TITLE: "Hey, this is Carlos Pomares",
-          SUBTITLE: "I'm Software Developer"
+          SUBTITLE: "I'm a Software Developer"
       },
       featured: {
           SUBTITLE: "Featured Project"
