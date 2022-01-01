@@ -358,7 +358,7 @@ class Welcome extends Component {
 
                     <ProjectsWrapper language={this.state.language ? language.en : language.es} projects={projects} />
 
-                    <ContactWrapper language={this.state.language ? language.en : language.es} />
+                    {/* <ContactWrapper language={this.state.language ? language.en : language.es} /> */}
                 </div>
             }
         </div>

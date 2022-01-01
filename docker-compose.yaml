@@ -1,54 +1,12 @@
 version: "3.7"
 
 services:
-    server:
-        image: carlospomares-server
-        container_name: cp-server
-        build:
-            context: ./server
-            dockerfile: Dockerfile
-        depends_on:
-            - web
-        ports:
-            - "80:80"
     web:
-        image: carlospomares-web
-        container_name: cp-web
-        expose:
-            - 3000
-        environment: 
-            - NODE_ENV=
+        image: pws-portfolio
+        container_name: pws-portfolio
+        restart: unless-stopped
+        ports:
+          - "3000:80"
         build:
             context: ./client
-            dockerfile: Dockerfile
-        depends_on:
-            - api
-    api:
-        image: carlospomares-api
-        container_name: cp-api
-        expose:
-            - "3000"
-        environment: 
-            - NODE_ENV=
-            # GLOBAL
-            - HOSTNAME=
-            - PORT=
-            - CERT_KEY=
-            - CERT_SECRET=
-            # MAIL
-            - MAIL_HOST=
-            - MAIL_PORT=
-            - MAIL_TYPE=
-            # MAIL AUTH
-            - MAIL_USER=
-            - MAIL_CLIENTID=
-            - MAIL_CLIENTSECRET=
-            - MAIL_REFRESHTOKEN=
-            - MAIL_PROCESSTOKEN=
-            # MAIL MESSAGE
-            - MAIL_FROM=
-            - MAIL_TO=
-            - MAIL_SUBJECT=
-        build:
-            context: ./api
             dockerfile: Dockerfile
